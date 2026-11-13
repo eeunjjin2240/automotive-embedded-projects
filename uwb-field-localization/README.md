@@ -49,13 +49,12 @@ HTTP 본문에는 `x`, `y`, `dist1`~`dist4`와 설치 구역 크기가 텍스트
 
 ---
 
-## English
 
-### System
+## System
 
 [UWB_4_1_esp8266_3/](UWB_4_1_esp8266_3/) preserves the original STM32CubeIDE firmware project, including application code, vendor drivers, middleware, linker scripts and IDE configuration. One STM32F429ZI/DWM3000 tag ranges against up to four anchors and exposes coordinates through an ESP8266 HTTP server.
 
-### Runtime flow
+## Runtime flow
 
 ```mermaid
 flowchart TD
@@ -92,7 +91,7 @@ sequenceDiagram
     E-->>C: x, y, four distances, field dimensions
 ```
 
-### Import and configure
+## Import and configure
 
 1. Import `UWB_4_1_esp8266_3` as an existing project in STM32CubeIDE.
 2. Enable exactly one role in `Src/example_selection.h`. The archive selects `TEST_DS_TWR_INITIATOR_irq`. Use `TEST_DS_TWR_RESPONDER_irq` for anchors.
@@ -102,7 +101,7 @@ sequenceDiagram
 
 The two-response position branch assumes axis-aligned anchor geometry. The three-or-more-response branch performs iterative optimization and handles pending HTTP requests. Position calculation and HTTP handling run on the interrupt callback path in this version. ESP initialization waits for AT responses and can block if the module is unavailable.
 
-### Files and verification
+## Files and verification
 
 The `custom_code/` directory holds tag and anchor logic. `Core/` provides initialization, UART buffering and the ESP8266 interface. `Shared/`, `Drivers/` and `platform/` supply the radio and MCU integration. Original vendor notices remain with their files.
 

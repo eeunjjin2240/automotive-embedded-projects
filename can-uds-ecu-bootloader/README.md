@@ -13,7 +13,6 @@
 
 AURIX Development Studio에서 `SCU_Gen6`를 기존 프로젝트로 가져옵니다. TC23x용 빌드 환경과 [외부 의존성](EXTERNAL_DEPENDENCIES.md)을 준비하고, 보드 메모리 배치에 맞춰 링커 설정을 확인한 후 빌드합니다. 후처리에는 별도 Hexview 설치가 필요합니다. `PostProcess.bat`의 입력 이미지와 주소를 확인한 뒤 실행합니다.
 
-## English
 
 ### CAN/UDS ECU Bootloader
 

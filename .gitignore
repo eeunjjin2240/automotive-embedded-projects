@@ -1,0 +1,16 @@
+# Local settings, build output, and raw artifacts
+.env
+.env.*
+*.zip
+*.7z
+*.mat
+*.mf4
+*.blf
+*.elf
+*.hex
+*.bin
+*.mp4
+__pycache__/
+.venv/
+Debug/
+Release/

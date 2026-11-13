@@ -1,0 +1,42 @@
+# OMC workspace
+.omc/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Build artifacts
+build/
+dist/
+*.obj
+*.o
+*.exe
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+
+# Simulink build / cache
+slprj/
+*.slxc
+*.slx.autosave
+*.mdl.autosave
+*.mexw64
+*.mexa64
+
+# CarMaker simulation output
+SimOutput/
+
+# 로그
+*.log
+
+# MATLAB 임시
+*.asv
+*.m~

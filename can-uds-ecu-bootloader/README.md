@@ -1,31 +1,32 @@
 # CAN/UDS ECU 부트로더
 
-HL만도·HL클레무브 Intelligent Vehicle School에서 Infineon AURIX TC234LP 교육용 ECU의 CAN/UDS 리프로그래밍 부트로더를 개발했습니다.
+[SCU_Gen6/](SCU_Gen6/)는 TC234LP 기반 ECU의 리프로그래밍 프로젝트입니다. CAN 진단 요청을 처리하고, 전송된 바이너리를 Flash에 기록하며 SHA-256을 사용한 이미지 확인 흐름을 제공합니다.
 
-- 진단 세션과 접근 처리, 펌웨어 수신, 수신 이미지 검증을 포함한 ECU 측 프로그래밍 흐름을 구현했습니다.
-- 다운로드 중단에 대비해 수신 영역과 실행 영역을 분리하고, 검증된 이미지를 반영하는 흐름을 적용했습니다.
-- EB tresos에서 CAN·Flash MCAL을 설정하고, FEE를 비휘발성 데이터 저장에 활용했습니다.
+## 구조와 실행
 
-2026년 6월 부트로더·소프트웨어 바이너리 무결성 프로젝트에서 우수상을 받았습니다. 교육용 기본 코드와 직접 구현한 부분의 공개 범위를 확인 중입니다.
+- `Source/2_App/BswDcm/Rte_BswDcm.c` · 세션, SecurityAccess, 다운로드·전송·종료 요청 처리
+- `Source/3_EcuAbs/` · CAN, Flash·비휘발성 메모리, 주변장치 추상화
+- `Source/1_Common/KISA_SHA256.*` · 이미지 해시 계산
+- `Source/5_Bsw/` · BSW 설정과 외부 드라이버 연결
+- `SCU_Gen6_Training.lsl` · 메모리 배치
+- `Training/PostProcess.bat` · Hexview를 사용한 부트·앱 이미지 후처리
 
----
+AURIX Development Studio에서 `SCU_Gen6`를 기존 프로젝트로 가져옵니다. TC23x용 빌드 환경과 [외부 의존성](EXTERNAL_DEPENDENCIES.md)을 준비하고, 보드 메모리 배치에 맞춰 링커 설정을 확인한 후 빌드합니다. 후처리에는 별도 Hexview 설치가 필요합니다. `PostProcess.bat`의 입력 이미지와 주소를 확인한 뒤 실행합니다.
 
 ## English
 
-## ECU Bootloader and Firmware Integrity
+### CAN/UDS ECU Bootloader
 
-I worked on a CAN/UDS reprogramming bootloader for an Infineon AURIX TC234LP training ECU in the HL Mando and HL Klemove Intelligent Vehicle School.
+[SCU_Gen6/](SCU_Gen6/) contains the TC234LP ECU project, diagnostic application, ECU abstraction, configuration and linker scripts. Import it into AURIX Development Studio and restore the licensed [external dependencies](EXTERNAL_DEPENDENCIES.md). Binary post-processing requires Hexview and the expected application image.
 
-### Design and contribution
+```mermaid
+flowchart LR
+ A[CAN diagnostic request] --> B[Session and access checks]
+ B --> C[RequestDownload]
+ C --> D[TransferData into staging region]
+ D --> E[RequestTransferExit]
+ E --> F[Programming dependency and image checks]
+ F --> G[Application update and reset]
+```
 
-- Worked on the ECU-side programming flow, including diagnostic session and access handling, firmware transfer, and validation of the received image.
-- Used separate staging and application regions so a download could be checked before replacing the application image. An interrupted download motivated the design.
-- Configured CAN and flash MCAL components using EB tresos. Used Flash EEPROM Emulation (FEE) for nonvolatile storage in the training environment.
-
-### Result
-
-Received an Excellence Award for the bootloader and software binary integrity project in June 2026.
-
-The project focused on ECU-side reprogramming over CAN. The update design addressed interruption during the download phase.
-
-The training base and personal changes are still being reviewed for public release.
+The source includes educational diagnostic and image-integrity mechanisms. The transfer, validation and memory layout are implemented in the diagnostic application and ECU abstraction layers.

@@ -1,0 +1,51 @@
+# ============================================================
+#  .gitattributes — Simulink / MATLAB 바이너리 보호
+#
+#  목적: .slx 등은 zip 기반 바이너리라 git의 3-way 텍스트 병합이
+#        불가능하다. 'binary' 로 지정하면 git이 diff/merge 를 시도하지
+#        않아 파일이 깨지는 사고를 막는다.
+#        (충돌은 여전히 발생 → Simulink Compare/slxmerge 로 수동 해결)
+# ============================================================
+
+# --- Simulink 모델 / 서브시스템 / 라이브러리 ---
+*.slx      binary
+*.slxp     binary
+*.slxc     binary
+*.mdl      binary
+*.mdlp     binary
+*.sldd     binary
+*.slreqx   binary
+*.slmx     binary
+
+# --- MATLAB 데이터 / 컴파일 산출물 ---
+*.mat      binary
+*.fig      binary
+*.mlx      binary
+*.mexw64   binary
+*.mexw32   binary
+*.mexa64   binary
+*.mexmaci64 binary
+*.p        binary
+*.mldatx   binary
+*.slxc     binary
+
+# --- 기타 흔한 바이너리 (오인 병합 방지) ---
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.pdf      binary
+*.xlsx     binary
+*.docx     binary
+*.pptx     binary
+*.zip      binary
+
+# --- 텍스트 소스: 명시적으로 텍스트 처리 + LF 정규화 ---
+*.m        text
+*.c        text
+*.h        text
+*.cpp      text
+*.md       text
+*.json     text
+*.xml      text
+*.txt      text

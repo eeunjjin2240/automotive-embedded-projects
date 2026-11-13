@@ -43,7 +43,7 @@ HTTP 본문에는 `x`, `y`, `dist1`~`dist4`와 설치 구역 크기가 텍스트
 
 ## 원본과 확인 범위
 
-원본 소스·드라이버·IDE 설정을 함께 보관했습니다. 재생성되는 `Debug/` 빌드 결과와 개인 디버그 실행 설정 `*.launch`는 제외했습니다. 원본 파일의 바이트 일치를 확인했으며, 이번 게시 작업에서 실제 보드 플래싱과 전체 IDE 빌드는 재실행하지 않았습니다. Qorvo 및 ST 등의 저작권·라이선스 고지는 각 원본 폴더에 있습니다.
+원본 소스·드라이버·IDE 설정을 함께 보관했습니다. 재생성되는 `Debug/` 빌드 결과와 개인 디버그 실행 설정 `*.launch`는 제외했습니다. Qorvo 및 ST 등의 저작권·라이선스 고지는 각 원본 폴더에 있습니다.
 
 [src/](src/)는 별도로 정리한 PC 실행용 위치 계산 예제입니다.
 
@@ -106,4 +106,4 @@ The two-response position branch assumes axis-aligned anchor geometry. The three
 
 The `custom_code/` directory holds tag and anchor logic. `Core/` provides initialization, UART buffering and the ESP8266 interface. `Shared/`, `Drivers/` and `platform/` supply the radio and MCU integration. Original vendor notices remain with their files.
 
-Generated `Debug/` output and personal `*.launch` settings are omitted. Imported files were checked byte-for-byte against the archive. A full IDE build and hardware run have not been repeated during this publication. The separate [src/](src/) directory contains the desktop estimator example.
+Generated `Debug/` output and personal `*.launch` settings are omitted. The separate [src/](src/) directory contains the desktop estimator example.

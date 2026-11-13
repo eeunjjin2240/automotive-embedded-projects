@@ -1,31 +1,34 @@
 # AURIX MCAL 주변장치 실습
 
-Infineon AURIX TC234LP 교육용 ECU에서 EB tresos로 제공 드라이버를 설정하고 애플리케이션에서 각 API를 연동했습니다.
+[MCAL_Training/](MCAL_Training/)의 각 폴더는 TC234LP용 독립 IDE 프로젝트입니다. 제공 MCAL을 설정하고 응용 코드에서 CAN·SPI·ADC·타이머·비휘발성 저장 기능을 연결하는 실습으로 구성됩니다.
 
-| 실습 | 주요 작업 |
+| 폴더 | 내용 |
 | --- | --- |
-| 타이밍과 입출력 | GPT, ADC, Port, DIO 설정 |
-| 센서와 차량 통신 | SPI 6축 센서 읽기와 CAN 송수신 |
-| 비휘발성 메모리 | FLS와 FEE 연동, Trace32로 가비지 컬렉션 전후 데이터 이동 관찰 |
-| 감시와 계측 | Watchdog 설정과 XCP 기본 계측 |
+| BaseProject, HelloWorld, ProcessingSpeed | 기본 프로젝트, 출력·실행 속도 실습 |
+| GPT, ADC, DIO | 타이머와 입출력 |
+| CAN_1, CAN_2, CAN_3 | CAN 실습 단계 |
+| SPI_1, SPI_2 | SPI 센서 연동 |
+| FEE, FEE_GC | Flash EEPROM Emulation과 가비지 컬렉션 |
+| WDG, XCP | Watchdog·계측 |
+| Complete | 통합 실습 구성 |
 
-소스 아카이브는 교육용 예제와 공급사 드라이버를 포함합니다. 개인 구현 범위를 확인할 수 있는 파일이 확보되면 추가할 수 있습니다.
-
----
+각 폴더의 `.project`를 AURIX Development Studio로 가져옵니다. [외부 의존성](EXTERNAL_DEPENDENCIES.md)에 기록된 MCAL 패키지를 준비하고, EB tresos 설정 및 TC23x 링커 파일을 확인한 후 프로젝트별로 빌드합니다. 보드 연결과 디버깅에는 해당 교육용 ECU와 Trace32 환경이 필요합니다.
 
 ## English
 
-## AURIX MCAL Peripheral Labs
+### AURIX MCAL Peripheral Labs
 
-Hardware exercises on the Infineon AURIX TC234LP training ECU. I used EB tresos to configure provided drivers and connected their APIs to the training applications.
+Each directory in [MCAL_Training/](MCAL_Training/) is an independent TC234LP IDE project. Import the selected project into AURIX Development Studio, restore its [licensed dependencies](EXTERNAL_DEPENDENCIES.md), and verify EB tresos configuration and linker settings before building.
 
-| Lab area | Work |
-| --- | --- |
-| Timing and I/O | Configured GPT, ADC, Port, and DIO for periodic tasks and analog/digital signals. |
-| Sensor and vehicle communication | Used SPI to read a six-axis sensor and exercised CAN transmission and reception. |
-| Nonvolatile memory | Worked with the Flash MCAL driver and the Flash EEPROM Emulation layer. Used Trace32 to observe storage movement during garbage collection. |
-| Monitoring | Exercised watchdog configuration and basic XCP measurement. |
+```mermaid
+flowchart LR
+ A[Peripheral configuration] --> B[Generated MCAL configuration]
+ B --> C[Initialization]
+ C --> D[Application or periodic task]
+ D --> E[ECU abstraction API]
+ E --> F[MCAL driver]
+ F --> G[CAN SPI ADC GPIO Flash]
+ G --> H[Callback or measured result]
+```
 
-**Environment** · AURIX Development Studio, EB tresos, and Trace32.
-
-The source archive contains course examples and vendor drivers. Individual contributions need to be identified before publication.
+The folders preserve the course exercise stages, including CAN, SPI, FEE garbage collection, watchdog and XCP.

@@ -14,3 +14,8 @@ __pycache__/
 .venv/
 Debug/
 Release/
+
+# Recorded inputs and saved results used by the MATLAB project
+!road-condition-estimation/adas_project/**/*.mat
+!road-condition-estimation/adas_project/*.mat
+!carmaker-parking-integration/autonomous-driving-missions/**/*.mat

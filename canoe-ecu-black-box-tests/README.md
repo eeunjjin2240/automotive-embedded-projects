@@ -24,5 +24,3 @@ I used CANoe and CAPL to automate requirements-based verification for a training
 | Status reporting | Returned state compared with the expected result |
 
 The verification scope was functional fault handling on a training ECU.
-
-The original CAPL scripts and execution reports were unavailable in the source material.

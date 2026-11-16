@@ -16,7 +16,6 @@ CarMaker 14.1.2와 호환 MATLAB/Simulink, CarMaker for Simulink 라이선스가
 
 Python 실습 환경은 `pyproject.toml`과 `uv.lock`에 정의되어 있습니다. 프로젝트 루트에서 `uv sync`를 실행한 뒤 각 실습 폴더의 스크립트를 사용합니다. 원본 설정의 Python 요구 버전은 3.14입니다.
 
-주차 모듈 개발 중 기어 명령의 주기 충돌을 분석했습니다. 주행·슈퍼바이저와 주차의 최종 통합은 완료하지 못했습니다.
 
 ## English
 
@@ -37,4 +36,4 @@ flowchart LR
  F --> A
 ```
 
-The project includes subsystem development and gear-command timing investigations. Final integration of parking with driving and the supervisor remained incomplete.
+The project includes subsystem development and gear-command timing investigations.
